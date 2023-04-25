@@ -8,9 +8,9 @@
   "webSocketDevAddress": "127.0.0.1:8001",
   "useWebSocketDevAddress": true,
   "webSocketRegions": {
-    "na": "na.resurviv.io",
-    "eu": "eu.resurviv.io",
-    "as": "as.resurviv.io"
+    "na": "customsurviv.fly.dev,
+    "eu": "customsurviv.fly.dev",
+    "as": "customsurviv.fly.dev"
   },
   "defaultRegion": "na",
   "keyFile": "key.pem",

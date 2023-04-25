@@ -8,7 +8,7 @@
   "webSocketDevAddress": "0.0.0.0",
   "useWebSocketDevAddress": false,
   "webSocketRegions": {
-    "na": "customsurviv.fly.dev,
+    "na": "customsurviv.fly.dev",
     "eu": "customsurviv.fly.dev",
     "as": "customsurviv.fly.dev"
   },

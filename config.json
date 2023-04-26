@@ -5,8 +5,8 @@
   "webSocketHost": "0.0.0.0",
   "webSocketPort": 8001,
   "webSocketHttps": false,
-  "webSocketDevAddress": "0.0.0.0",
-  "useWebSocketDevAddress": false,
+  "webSocketDevAddress": "customsurviv.fly.dev",
+  "useWebSocketDevAddress": true,
   "webSocketRegions": {
     "na": "customsurviv.fly.dev",
     "eu": "customsurviv.fly.dev",

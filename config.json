@@ -20,8 +20,8 @@
   "botProtection": false,
   "stopServerOnGameEnd": false,
   "debug": {
-    "disableMapGeneration": false,
-    "fixedSpawnLocation": [],
+    "disableMapGeneration": true,
+    "fixedSpawnLocation": [350, 350],
     "disableRedZone": false,
     "disableStaticFileCache": true
   }

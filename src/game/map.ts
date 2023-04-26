@@ -195,6 +195,19 @@ export class Map {
             new Loot(this.game, "m870", Vec2(450, 150), 0, 1);
             new Loot(this.game, "m1911", Vec2(450, 150), 0, 1);
             new Loot(this.game, "m870", Vec2(450, 150), 0, 1);
+
+                    // Todo make me a loop
+            this.genBuilding("container_05", Objects.container_05, Vec2(400, 400));
+            this.genBuilding("container_04", Objects.container_04, Vec2(370, 395));
+            this.genBuilding("container_06", Objects.container_06, Vec2(333, 392));
+            this.genBuilding("container_04", Objects.container_04, Vec2(387, 372));
+            this.genBuilding("container_03", Objects.container_03, Vec2(369, 376), 2);
+            this.genBuilding("container_05", Objects.container_05, Vec2(376, 348));
+            this.genBuilding("container_05", Objects.container_05, Vec2(340, 375));
+            this.genBuilding("container_05", Objects.container_05, Vec2(355, 345));
+            this.genBuilding("container_05", Objects.container_05, Vec2(319, 360));
+            this.genBuilding("container_05", Objects.container_05, Vec2(356, 321));
+            this.genBuilding("container_05", Objects.container_05, Vec2(380, 320));
         }
         log(`Map generation took ${Date.now() - mapStartTime}ms`);
 

@@ -590,8 +590,19 @@ export class Game {
     addPlayer(socket, name, loadout): Player {
         let spawnPosition;
         if(!this.allowJoin) spawnPosition = Vec2(360, 360);
-        if(Debug.fixedSpawnLocation.length) spawnPosition = Vec2(Debug.fixedSpawnLocation[0], Debug.fixedSpawnLocation[1]);
-        else if(this.gas.currentRad <= 16) spawnPosition = this.gas.currentPos.clone();
+        // if(Debug.fixedSpawnLocation.length) spawnPosition = Vec2(Debug.fixedSpawnLocation[0], Debug.fixedSpawnLocation[1]);
+        
+        const positions = [
+            [326, 386], [375, 400]
+        ];
+
+        if(Debug.fixedSpawnLocation.length) {
+            const randomNumber = Math.floor(Math.random() * positions.length);
+            const [x, y] = positions[randomNumber];
+
+            spawnPosition = Vec2(x, y);
+
+        } else if(this.gas.currentRad <= 16) spawnPosition = this.gas.currentPos.clone();
         else {
             let foundPosition = false;
             while(!foundPosition) {
@@ -626,7 +637,8 @@ export class Game {
         new AliveCountsPacket(this).serialize(stream);
         p.sendData(stream);
 
-        if(this.aliveCount > 1 && !this.started) {
+        // if(this.aliveCount > 1 && !this.started) {
+        if(this.aliveCount === 1 && !this.started) {
             this.started = true;
             Game.advanceRedZone(this);
         }
@@ -636,14 +648,20 @@ export class Game {
 
     static advanceRedZone(game: Game): void {
         if(Debug.disableRedZone) return;
-        const currentStage = RedZoneStages[game.gas.stage + 1];
+        const currentStage = {
+            mode: 2,
+            duration: 0,
+            radOld: 50,
+            radNew: 50,
+            damage: 22
+          };
         if(!currentStage) return;
         game.gas.stage++;
         game.gas.mode = currentStage.mode;
         game.gas.initialDuration = currentStage.duration;
         game.gas.duration = 1;
         game.gas.countdownStart = Date.now();
-        if(currentStage.mode === 1) {
+        if(currentStage.mode === 1 && false) {
             game.gas.posOld = game.gas.posNew.clone();
             if(currentStage.radNew !== 0) {
                 game.gas.posNew = randomPointInsideCircle(game.gas.posOld, currentStage.radOld - currentStage.radNew);

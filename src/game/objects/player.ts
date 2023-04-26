@@ -98,7 +98,7 @@ export class Player extends GameObject {
     };
 
     private _health = 100; // The player's health. Ranges from 0-100.
-    private _boost = 0; // The player's adrenaline. Ranges from 0-100.
+    private _boost = 75; // The player's adrenaline. Ranges from 0-100.
 
     kills = 0;
 
@@ -146,13 +146,13 @@ export class Player extends GameObject {
     };
 
     backpackLevel = 0;
-    chestLevel = 0;
-    helmetLevel = 0;
+    chestLevel = 2;
+    helmetLevel = 2;
     inventory = {
         "9mm": 0,
-        "762mm": 0,
-        "556mm": 0,
-        "12gauge": 0,
+        "762mm": 40,
+        "556mm": 40,
+        "12gauge": 40,
         "50AE": 0,
         "308sub": 0,
         flare: 0,
@@ -165,18 +165,18 @@ export class Player extends GameObject {
         potato: 0,
         bandage: 0,
         healthkit: 0,
-        soda: 0,
+        soda: 1,
         painkiller: 0,
         "1xscope": 1,
-        "2xscope": 0,
-        "4xscope": 0,
+        "2xscope": 1,
+        "4xscope": 1,
         "8xscope": 0,
         "15xscope": 0
     };
 
     scope = {
-        typeString: "1xscope",
-        typeId: TypeToId["1xscope"]
+        typeString: "4xscope",
+        typeId: TypeToId["4xscope"]
     };
 
     weapons = [
@@ -274,7 +274,7 @@ export class Player extends GameObject {
         this.socket = socket;
         this.teamId = this.groupId = this.game.nextGroupId;
         this.name = name;
-        this.zoom = Constants.scopeZoomRadius.desktop["1xscope"];
+        this.zoom = Constants.scopeZoomRadius.desktop["4xscope"];
         this.actionItem = { typeString: "", typeId: 0, duration: 0, useEnd: -1 };
         this.joinTime = Date.now();
 
@@ -310,17 +310,27 @@ export class Player extends GameObject {
         this.weapons[2].typeString = this.loadout.meleeType;
         this.weapons[2].typeId = this.loadout.melee;
 
-        /*
         // Quickswitching test
-        this.inventory["762mm"] = 120;
-        this.weapons[0].typeString = "sv98";
-        this.weapons[0].typeId = TypeToId.sv98;
-        this.weapons[1].typeString = "sv98";
-        this.weapons[1].typeId = TypeToId.sv98;
-        */
+        const weaponsWhenSpawning = [
+            "sv98", "scout", "spas12", "mosin", "m1014"
+        ];
+        const ammoWhenSpawning = [
+            ["12gauge", 30],
+            ["762mm", 30],
+            ["556mm", 30]
+        ];
+
+        ammoWhenSpawning.forEach(([type, capacity]) => {this.inventory[type] = capacity; });
+
+        const firstGun = weaponsWhenSpawning[random(0, weaponsWhenSpawning.length - 1)];
+        this.weapons[0].typeString = firstGun;
+        this.weapons[0].typeId = TypeToId[firstGun];
+        const secondGun = weaponsWhenSpawning[random(0, weaponsWhenSpawning.length - 1)];
+        this.weapons[1].typeString = secondGun;
+        this.weapons[1].typeId = TypeToId[secondGun];
 
         // Spawn w/ random ammo & healing items in late game
-        if(game.spawnWithGoodies) {
+        if(game.spawnWithGoodies && false) {
             switch(random(1, 4)) {
                 case 1:
                     this.inventory["9mm"] = 60;
@@ -638,6 +648,8 @@ export class Player extends GameObject {
     }
 
     useMelee(): void {
+        const mousePosition = this.direction.clone().mul(this.distanceToMouse).add(this.position);
+        console.log(mousePosition)
         // Start punching animation
         if(!this.anim.active) {
             this.anim.active = true;

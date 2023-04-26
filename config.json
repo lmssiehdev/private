@@ -1,12 +1,12 @@
 {
-  "host": "0.0.0.0",
+  "host": "127.0.0.1",
   "port": 8000,
   "https": false,
-  "webSocketHost": "0.0.0.0",
+  "webSocketHost": "127.0.0.1",
   "webSocketPort": 8001,
   "webSocketHttps": false,
-  "webSocketDevAddress": "customsurviv.fly.dev",
-  "useWebSocketDevAddress": true,
+  "webSocketDevAddress": "127.0.0.1",
+  "useWebSocketDevAddress": false,
   "webSocketRegions": {
     "na": "customsurviv.fly.dev",
     "eu": "customsurviv.fly.dev",
@@ -20,8 +20,8 @@
   "botProtection": false,
   "stopServerOnGameEnd": false,
   "debug": {
-    "disableMapGeneration": false,
-    "fixedSpawnLocation": [],
+    "disableMapGeneration": true,
+    "fixedSpawnLocation": [350, 350],
     "disableRedZone": false,
     "disableStaticFileCache": true
   }

@@ -2,7 +2,8 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - one-port-version
 
 jobs:
   build-and-deploy:

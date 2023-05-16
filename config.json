@@ -3,7 +3,7 @@
   "port": 8000,
   "https": false,
   "webSocketHost": "0.0.0.0",
-  "webSocketPort": 8001,
+  "webSocketPort": 8000,
   "webSocketHttps": false,
   "webSocketDevAddress": "0.0.0.0",
   "useWebSocketDevAddress": false,

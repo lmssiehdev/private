@@ -30,7 +30,6 @@ primary_region = "cdg"
 [[services]]
   protocol = "tcp"
   internal_port = 8001
-  processes = ["app"]
 
   [[services.ports]]
     port = 444

@@ -3,14 +3,14 @@
   "port": 8000,
   "https": false,
   "webSocketHost": "0.0.0.0",
-  "webSocketPort": 8000,
+  "webSocketPort": 8001,
   "webSocketHttps": false,
   "webSocketDevAddress": "0.0.0.0",
   "useWebSocketDevAddress": false,
   "webSocketRegions": {
-    "na": "customsurviv.fly.dev:8001",
-    "eu": "customsurviv.fly.dev:8001",
-    "as": "customsurviv.fly.dev:8001"
+    "na": "customsurviv.fly.dev:444",
+    "eu": "customsurviv.fly.dev:444",
+    "as": "customsurviv.fly.dev:444"
   },
   "defaultRegion": "na",
   "keyFile": "key.pem",

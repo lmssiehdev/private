@@ -83,7 +83,7 @@ app.post("/api/user/get_user_prestige", (res) => {
 
 app.post("/api/find_game", (res) => {
     readPostedJson(res, (body) => {
-        const addr = "customsurviv.fly.dev:444";
+        const addr: string = Config.useWebSocketDevAddress ? Config.webSocketDevAddress : Config.webSocketRegions[body?.region] ?? Config.webSocketRegions[Config.defaultRegion];
         res.writeHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ res: [{ zone: body.zones[0], gameId: "", useHttps: Config.useHttps, hosts: [addr], addrs: [addr] }] }));
     }, () => {

@@ -33,11 +33,6 @@ primary_region = "cdg"
   processes = ["app"]
 
   [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
     port = 444
     handlers = ["tls", "http"]
   [services.concurrency]

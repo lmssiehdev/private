@@ -25,3 +25,21 @@ primary_region = "cdg"
     type = "connections"
     hard_limit = 25
     soft_limit = 20
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8001
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 444
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20

@@ -1,40 +1,48 @@
-# fly.toml file generated for customsurviv on 2023-04-25T21:17:41+01:00
+# fly.toml app configuration file generated for privatesurviv on 2024-02-08T19:19:40+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "customsurviv"
-kill_signal = "SIGINT"
-kill_timeout = 5
-primary_region = "cdg"
-
-[env]
-  PORT = "8000"
-  WS_PORT = "8001"
+app = "privatesurviv"
+primary_region = "mad"
 
 [[services]]
-  protocol = "tcp"
-  internal_port = 8000
+  http_checks = []
+  internal_port = 8080
   processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
 
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
   [services.concurrency]
-    type = "connections"
     hard_limit = 25
     soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 8080
 
 [[services]]
+  http_checks = []
+  internal_port = 8081
+  processes = ["app"]
   protocol = "tcp"
-  internal_port = 8001
+  script_checks = []
 
-  [[services.ports]]
-    port = 444
-    handlers = ["tls", "http"]
   [services.concurrency]
-    type = "connections"
     hard_limit = 25
     soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 8081

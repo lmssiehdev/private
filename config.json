@@ -2,10 +2,10 @@
   "host": "0.0.0.0",
   "port": 8000,
   "https": false,
-  "webSocketHost": "127.0.0.1",
+  "webSocketHost": "0.0.0.0",
   "webSocketPort": 8001,
   "webSocketHttps": false,
-  "webSocketDevAddress": "127.0.0.1",
+  "webSocketDevAddress": "0.0.0.0",
   "useWebSocketDevAddress": false,
   "webSocketRegions": {
     "na": "customsurviv.fly.dev:444",
